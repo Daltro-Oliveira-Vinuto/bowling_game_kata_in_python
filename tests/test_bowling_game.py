@@ -15,6 +15,17 @@ from bowling_game import BowlingGame
 
 
 def test_game_started():
-	game = BowlingGame()
+	game: BowlingGame = BowlingGame()
+	assert game.get_score() == 0
+
+
+def test_gutted_all_rolls():
+	game: BowlingGame = BowlingGame()
+
+	game.repeated_rolls(20, 0)
 
 	assert game.get_score() == 0
+
+
+
+
