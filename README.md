@@ -1,0 +1,1 @@
+This is a version of Bowling Game Kata in python and his purpose is just to practice TDD
