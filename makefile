@@ -5,7 +5,6 @@ test:
 
 lint:
 	pylint "sources/bowling_game.py"
-	pylint "tests/test_bowling_game.py"
 	pylint "sources/main.py"
 
 mypy:

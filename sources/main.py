@@ -1,7 +1,8 @@
-import bowling_game
-from bowling_game import Bowling_Game
+"main program"
+
+from bowling_game import BowlingGame
 
 if __name__ == "__main__":
-	game = Bowling_Game()
+    game: BowlingGame = BowlingGame()
 
-	print(game)
+    print(game)
