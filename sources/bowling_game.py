@@ -17,11 +17,35 @@ class BowlingGame():
             if self._is_spare(frame_index):
                 self._score+= 10 + self._spare_bonus(frame_index)
                 frame_index+= 2
+            elif self._is_strike(frame_index):
+                self._score+= 10 + self._strike_bonus(frame_index)
+                frame_index+= 1
             else:
                 self._score+= self._get_normal_score(frame_index)
                 frame_index+= 2
 
         return self._score
+
+    def _is_strike(self, index: int) -> bool:
+        list_out_of_bounds: bool = index >= len(self._pontuation)
+        logic_state: bool
+        if list_out_of_bounds:
+            logic_state = False
+        else:
+            logic_state = self._pontuation[index] == 10
+
+        return logic_state
+
+    def _strike_bonus(self, index: int) -> int:
+        list_out_of_bounds: bool = index+1 >= len(self._pontuation) or \
+            index+2 >= len(self._pontuation)
+        strike_bonus: int = 0
+        if list_out_of_bounds:
+            strike_bonus = 0
+        else:
+            strike_bonus = self._pontuation[index+1] + self._pontuation[index+2]
+
+        return strike_bonus
 
     def _is_spare(self, index: int) -> bool:
         logic_state: bool

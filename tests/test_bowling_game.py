@@ -17,6 +17,9 @@ def happen_spare(game: BowlingGame):
 	game.roll(5)
 	game.roll(5)
 
+def happen_strike(game: BowlingGame):
+	game.roll(10)
+
 
 def test_game_started():
 	game: BowlingGame = BowlingGame()
@@ -52,6 +55,20 @@ def test_one_spare():
 
 	assert game.get_score() == 16
 	assert game.score == 16
+
+def test_one_strike():
+	game: BowlingGame = BowlingGame()
+
+	happen_strike(game)
+
+	game.roll(3)
+	game.roll(2)
+
+	game.repeated_rolls(17, 0)
+
+	assert game.get_score() == 20
+	assert game.score == 20
+
 
 
 
