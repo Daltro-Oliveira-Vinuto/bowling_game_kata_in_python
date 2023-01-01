@@ -69,9 +69,10 @@ def test_one_strike():
 	assert game.get_score() == 20
 	assert game.score == 20
 
+def test_best_game():
+	game: BowlingGame = BowlingGame()
 
+	game.repeated_rolls(20,10)
 
-
-
-
-
+	assert game.get_score() == 300
+	assert game.score == 300
