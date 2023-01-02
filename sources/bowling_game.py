@@ -10,14 +10,9 @@ class BowlingGame():
 
     def get_score(self) -> int:
         "return the score of the bowling game"
-
-        for i,value in enumerate(self._pontuation):
-            print(f"(v({i})={value}, ",end='')
-        print()
-        print()
         self._score = 0
         frame_index = 0
-        for i in range(BowlingGame.number_frames):
+        for _ in range(BowlingGame.number_frames):
             # a important note here is the fact that checking strike
             # has to come before cheking spare"
             # otherwise all strikes will be treated as spares
@@ -93,7 +88,7 @@ class BowlingGame():
         self._pontuation.append(points)
 
     def __str__(self) -> str:
-        return f"The score of the bowling game was {self.get_score}"
+        return f"The score of the bowling game was {self.score}"
 
     def repeated_rolls(self, total: int, points: int) -> None:
         "this function get a pontuation by roll(points) and repeat that roll 'total' times "
