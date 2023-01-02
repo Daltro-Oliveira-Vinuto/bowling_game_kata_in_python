@@ -11,15 +11,23 @@ class BowlingGame():
     def get_score(self) -> int:
         "return the score of the bowling game"
 
+        for i,value in enumerate(self._pontuation):
+            print(f"(v({i})={value}, ",end='')
+        print()
+        print()
         self._score = 0
         frame_index = 0
-        for _ in range(BowlingGame.number_frames):
-            if self._is_spare(frame_index):
-                self._score+= 10 + self._spare_bonus(frame_index)
-                frame_index+= 2
-            elif self._is_strike(frame_index):
+        for i in range(BowlingGame.number_frames):
+            # a important note here is the fact that checking strike
+            # has to come before cheking spare"
+            # otherwise all strikes will be treated as spares
+
+            if self._is_strike(frame_index):
                 self._score+= 10 + self._strike_bonus(frame_index)
                 frame_index+= 1
+            elif self._is_spare(frame_index):
+                self._score+= 10 + self._spare_bonus(frame_index)
+                frame_index+= 2
             else:
                 self._score+= self._get_normal_score(frame_index)
                 frame_index+= 2
@@ -49,7 +57,7 @@ class BowlingGame():
 
     def _is_spare(self, index: int) -> bool:
         logic_state: bool
-        list_out_of_bounds: bool = index >= len(self._pontuation) or index >= len(self._pontuation)
+        list_out_of_bounds: bool = index >= len(self._pontuation) or index+1>= len(self._pontuation)
         if list_out_of_bounds:
             logic_state = False
         else:
@@ -78,7 +86,7 @@ class BowlingGame():
     @property
     def score(self) -> int:
         "handles the return of the protected variable _score"
-        return self._score
+        return self.get_score()
 
     def roll(self, points) -> None:
         "deals with each roll of the bowling game"
@@ -91,3 +99,13 @@ class BowlingGame():
         "this function get a pontuation by roll(points) and repeat that roll 'total' times "
         for _ in range(total):
             self.roll(points)
+
+
+    def store_roll_list(self, roll_list: list[int]) -> None:
+        "receive a list of rolls and store in the class"
+        for roll in roll_list:
+            self.roll(roll)
+
+    def load_roll_list(self) -> list[int]:
+        "return the list of rolls of the bowling game"
+        return self._pontuation

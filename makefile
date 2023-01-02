@@ -13,7 +13,7 @@ mypy:
 
 
 debug:
-	python -m pdb "sources/bowling_game.py"
+	python -m pdb "sources/main.py"
 
 run:
 	python "sources/main.py"
